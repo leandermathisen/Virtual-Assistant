@@ -1,5 +1,7 @@
 import pyowm
-from datetime import datetime
+from datetime import datetime, date
+import calendar
+import time
 
 monday_reminders = []
 tuesday_reminders = []
@@ -8,7 +10,6 @@ thursday_reminders = []
 friday_reminders = []
 saturday_reminders = []
 sunday_reminders = []
-command_continue = True
 
 def get_weather():
     owm = pyowm.OWM("653ae96c89b55a1cccf01e7243d6b94b")
@@ -81,7 +82,8 @@ def make_reminder():
         print("Will remind you to " + sunday_reminders[-1] + " on Sunday.")
 
 def show_reminders_today():
-    day_of_the_week = datetime.date.today().strftime("%A")
+    my_date = date.today()
+    day_of_the_week = calendar.day_name[my_date.weekday()]
     if day_of_the_week == "Monday":
         for task in monday_reminders:
             print(task)
@@ -203,7 +205,15 @@ def remove_task():
     else:
         print("Not in range of the days of the week.")
 
+todays_date = date.today()
+current_date = calendar.day_name[todays_date.weekday()]
+
 while True:
+    todays_date = date.today()
+    if current_date != calendar.day_name[todays_date.weekday()]:
+            print("Here are your reminders for today:")
+            show_reminders_today()
+            current_date = calendar.day_name[todays_date.weekday()]
     command = input()
     if command == "end":
         break
