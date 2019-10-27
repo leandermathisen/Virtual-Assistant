@@ -1,6 +1,5 @@
 import pyowm
 from datetime import datetime
-import datetime
 
 monday_reminders = []
 tuesday_reminders = []
@@ -128,6 +127,82 @@ def show_reminders_date():
         for task in sunday_reminders:
             print(sunday_reminders)
 
+def remove_task():
+    task_number = 0
+    command = input("On what day would you like to remove the task for: ")
+    if command == "Monday":
+        for task in monday_reminders:
+            task_number = task_number + 1
+            print(str(task_number) + ") " + task)
+        task_deleted = input("Which task would you like to remove: ")
+        if len(monday_reminders) >= int(task_deleted):
+            print("I have removed task " + task_deleted + " from your reminders on Monday.")
+            monday_reminders.pop(int(task_deleted) - 1)
+        else:
+            print("That task is not in range of Monday reminders.")
+    elif command == "Tuesday":
+        for task in tuesday_reminders:
+            task_number = task_number + 1
+            print(str(task_number) + ") " + task)
+        task_deleted = input("Which task would you like to remove: ")
+        if len(tuesday_reminders) >= int(task_deleted):
+            print("I have removed task " + task_deleted + " from your reminders on Tuesday.")
+            tuesday_reminders.pop(int(task_deleted) - 1)
+        else:
+            print("That task is not in range of Tuesday reminders.")
+    elif command == "Wednesday":
+        for task in wednesday_reminders:
+            task_number = task_number + 1
+            print(str(task_number) + ") " + task)
+        task_deleted = input("Which task would you like to remove: ")
+        if len(wednesday_reminders) >= int(task_deleted):
+            print("I have removed task " + task_deleted + " from your reminders on Wednesday.")
+            wednesday_reminders.pop(int(task_deleted - 1))
+        else:
+            print("That task is not in range of Wednesday reminders.")
+    elif command == "Thursday":
+        for task in thursday_reminders:
+            task_number = task_number + 1
+            print(str(task_number) + ") " + task)
+        task_deleted = input("Which task would you like to remove: ")
+        if len(thursday_reminders) >= int(task_deleted):
+            print("I have removed task " + task_deleted + " from your reminders on Thursday.")
+            thursday_reminders.pop(int(task_deleted - 1))
+        else:
+            print("That task is not in range of Thursday reminders.")
+    elif command == "Friday":
+        for task in friday_reminders:
+            task_number = task_number + 1
+            print(str(task_number) + ") " + task)
+        task_deleted = input("Which task would you like to remove: ")
+        if len(friday_reminders) >= int(task_deleted):
+            print("I have removed task " + task_deleted + " from your reminders on Friday.")
+            friday_reminders.pop(int(task_deleted - 1))
+        else:
+            print("That task is not in range of Friday reminders.")
+    elif command == "Saturday":
+        for task in saturday_reminders:
+            task_number = task_number + 1
+            print(str(task_number) + ") " + task)
+        task_deleted = input("Which task would you like to remove: ")
+        if len(saturday_reminders) >= int(task_deleted):
+            print("I have removed task " + task_deleted + " from your reminders on Saturday.")
+            saturday_reminders.pop(int(task_deleted - 1))
+        else:
+            print("That task is not in range of Saturday reminders.")
+    elif command == "Sunday":
+        for task in sunday_reminders:
+            task_number = task_number + 1
+            print(str(task_number) + ") " + task)
+        task_deleted = input("Which task would you like to remove: ")
+        if len(sunday_reminders) >= int(task_deleted):
+            print("I have removed task " + task_deleted + " from your reminders on Sunday.")
+            sunday_reminders.pop(int(task_deleted - 1))
+        else:
+            print("That task is not in range of Sunday reminders.")
+    else:
+        print("Not in range of the days of the week.")
+
 while True:
     command = input()
     if command == "end":
@@ -147,6 +222,9 @@ while True:
     elif "Show me my reminders for" in command:
         show_reminders_date()
         continue
+    elif "Remove task" in command:
+        remove_task()
+        continue
     else:
-        print("Put in a valid command.")
+        print("Enter a valid command.")
         continue
