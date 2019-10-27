@@ -81,6 +81,53 @@ def make_reminder():
         sunday_reminders.append(command[23:])
         print("Will remind you to " + sunday_reminders[-1] + " on Sunday.")
 
+def show_reminders_today():
+    day_of_the_week = datetime.date.today().strftime("%A")
+    if day_of_the_week == "Monday":
+        for task in monday_reminders:
+            print(task)
+    elif day_of_the_week == "Tuesday":
+        for task in tuesday_reminders:
+            print(task)
+    elif day_of_the_week == "Wednesday":
+        for task in wednesday_reminders:
+            print(task)
+    elif day_of_the_week == "Thursday":
+        for task in thursday_reminders:
+            print(task)
+    elif day_of_the_week == "Friday":
+        for task in friday_reminders:
+            print(task)
+    elif day_of_the_week == "Saturday":
+        for task in saturday_reminders:
+            print(task)
+    else:
+        for task in sunday_reminders:
+            print(sunday_reminders)
+
+def show_reminders_date():
+    if "Monday" in command:
+        for task in monday_reminders:
+            print(task)
+    elif "Tuesday" in command:
+        for task in tuesday_reminders:
+            print(task)
+    elif "Wednesday" in command:
+        for task in wednesday_reminders:
+            print(task)
+    elif "Thursday" in command:
+        for task in thursday_reminders:
+            print(task)
+    elif "Friday" in command:
+        for task in friday_reminders:
+            print(task)
+    elif "Saturday" in command:
+        for task in saturday_reminders:
+            print(task)
+    elif "Sunday" in command:
+        for task in sunday_reminders:
+            print(sunday_reminders)
+
 while True:
     command = input()
     if command == "end":
@@ -95,21 +142,11 @@ while True:
         make_reminder()
         continue
     elif command == "Show me my reminders for today":
-        day_of_the_week = datetime.date.today().strftime("%A")
-        if day_of_the_week == "Monday":
-            print(monday_reminders)
-        elif day_of_the_week == "Tuesday":
-            print(tuesday_reminders)
-        elif day_of_the_week == "Wednesday":
-            print(wednesday_reminders)
-        elif day_of_the_week == "Thursday":
-            print(thursday_reminders)
-        elif day_of_the_week == "Friday":
-            print(friday_reminders)
-        elif day_of_the_week == "Satruday":
-            print(saturday_reminders)
-        else:
-            print(sunday_reminders)
+        show_reminders_today()
+        continue
+    elif "Show me my reminders for" in command:
+        show_reminders_date()
+        continue
     else:
         print("Put in a valid command.")
         continue
