@@ -3,6 +3,7 @@ from datetime import datetime, date
 import calendar
 import time
 import speech_recognition as sr
+from countryinfo import CountryInfo
 
 r = sr.Recognizer()
 monday_reminders = []
@@ -269,6 +270,18 @@ def remove_task():
     else:
         print("Not in range of the days of the week.")
 
+def get_capital():
+    with sr.Microphone() as source:
+        print("What country would you like to know the capital of: ")
+        audio = r.listen(source)
+    try:
+        country_said = r.recognize_google(audio)
+    except:
+        print("Could not recognize your voice")
+    try:
+        country = CountryInfo(country_said)
+        print("The capital of " + country_said + " is " + country.capital() + ".")
+
 # Initially sets today's date to notify of reminders when the date changes
 todays_date = date.today()
 current_date = calendar.day_name[todays_date.weekday()]
@@ -307,6 +320,8 @@ while True:
     elif "remove task" in command:
         remove_task()
         continue
+    elif command == "tell me the capital of a country":
+
     else:
         print("Enter a valid command.")
         continue
