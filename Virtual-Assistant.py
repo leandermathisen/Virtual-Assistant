@@ -12,7 +12,7 @@ thursday_reminders = []
 friday_reminders = []
 saturday_reminders = []
 sunday_reminders = []
-print(int("one"))
+
 def get_weather():
     owm = pyowm.OWM("653ae96c89b55a1cccf01e7243d6b94b")
     location = owm.weather_at_place("Toronto")
