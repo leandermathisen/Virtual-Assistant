@@ -13,6 +13,7 @@ friday_reminders = []
 saturday_reminders = []
 sunday_reminders = []
 
+# Function to get today's weather
 def get_weather():
     owm = pyowm.OWM("653ae96c89b55a1cccf01e7243d6b94b")
     location = owm.weather_at_place("Toronto")
@@ -20,6 +21,7 @@ def get_weather():
     temp = weather.get_temperature("celsius")
     print("The temperature is currently " + str(int(temp["temp"])) + " degrees celsius, with a high of " + str(int(temp["temp_max"])) + " and a low of " + str(int(temp["temp_min"])) + " degrees celsius.")
 
+# Function to get today's date
 def get_date():
     date = str(datetime.date(datetime.now()))
     year = date[:4]
@@ -59,6 +61,7 @@ def get_date():
         day_sub = "th"
     print("The date is the " + day + day_sub + " of " + month + ", " + year + ".")
 
+# Function to set a reminder
 def make_reminder():
     with sr.Microphone() as source:
         print("What reminder would you like me to set?: ")
@@ -89,6 +92,7 @@ def make_reminder():
         sunday_reminders.append(command[23:])
         print("Will remind you to " + sunday_reminders[-1] + " on Sunday.")
 
+# Function to show reminders for today
 def show_reminders_today():
     my_date = date.today()
     day_of_the_week = calendar.day_name[my_date.weekday()]
@@ -114,6 +118,7 @@ def show_reminders_today():
         for task in sunday_reminders:
             print(sunday_reminders)
 
+# Function to show reminders for a specific day of the week
 def show_reminders_date():
     if "monday" in command:
         for task in monday_reminders:
@@ -137,6 +142,9 @@ def show_reminders_date():
         for task in sunday_reminders:
             print(sunday_reminders)
 
+# Function for removing a task from the reminder list
+# Asks what day of the week the task would like to be removed
+# Then prints out a list of all the tasks of the day and asks which one to remove
 def remove_task():
     task_number = 0
     with sr.Microphone() as source:
@@ -261,9 +269,11 @@ def remove_task():
     else:
         print("Not in range of the days of the week.")
 
+# Initially sets today's date to notify of reminders when the date changes
 todays_date = date.today()
 current_date = calendar.day_name[todays_date.weekday()]
 
+# Repeated loops asking for commands
 while True:
     todays_date = date.today()
     if current_date != calendar.day_name[todays_date.weekday()]:
